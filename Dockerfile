@@ -1,16 +1,25 @@
-FROM node:18-alpine
+FROM node:lts-alpine
 
 ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
+# install simple http server for serving static content
+RUN npm install -g http-server
+
+# make the 'app' folder the current working directory
 WORKDIR /app
 
-EXPOSE 5173
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
 
-COPY ["package.json", "package-lock.json*", "./"]
+# install project dependencies
+RUN npm install
 
-RUN npm run build
-
+# copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
 
-CMD ["npm", "start"]
+# build app for production with minification
+RUN npm run build
+
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
