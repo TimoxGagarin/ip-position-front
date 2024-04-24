@@ -9,8 +9,8 @@ EXPOSE 5173
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install -g serve
+RUN npm run build
 
 COPY . .
 
-CMD ["npm", "run", "serve"]
+CMD ["npm", "start"]
