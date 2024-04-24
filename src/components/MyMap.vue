@@ -69,11 +69,16 @@ import "leaflet/dist/leaflet.css";
                 while(this.markers.length > 0){
                     this.map.removeLayer(this.markers.pop());
                 }
+                var customIcon = L.icon({
+                    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+                    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+                }); 
+
                 console.log(ipInfos);
                 this.map.setView([0, 0], 2);
                 for(let i in ipInfos){
                     console.log(ipInfos[i]);
-                    this.markers.push(L.marker([ipInfos[i].position.latitude, ipInfos[i].position.longitude]).addTo(this.map)
+                    this.markers.push(L.marker([ipInfos[i].position.latitude, ipInfos[i].position.longitude], {"icon":customIcon}).addTo(this.map)
                     .bindPopup(`
                             <style>
                             .card-h1{

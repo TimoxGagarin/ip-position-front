@@ -8,11 +8,10 @@ WORKDIR /app
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
+COPY node_modules ./
 
 # install project dependencies
 RUN npm install
-
-RUN npm install leaflet
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
@@ -21,4 +20,4 @@ COPY . .
 RUN npm run build
 
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD [ "http-server", "dist/images" ]
