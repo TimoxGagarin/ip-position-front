@@ -84,7 +84,7 @@ export default{
             .join('&');
 
             this.findError = ""
-            axios.get(`${API_URL}/ips-info/find?${queryString}`)
+            axios.get(`https://ip-position.onrender.com/ips-info/find?${queryString}`)
             .then(res => (this.info = res.data))
             .catch(error => {
                 this.findError = error.message + ": " + error.response.data;
@@ -92,7 +92,7 @@ export default{
         },
         addNewIpInfo(){
             this.addError = ""
-            axios.post(`${API_URL}/ips-info/add`, [this.to_add])
+            axios.post(`https://ip-position.onrender.com/ips-info/add`, [this.to_add])
             .then(res => this.getIpInfo())
             .catch(error => {
                 this.addError = error.message + ": " + error.response.data;
@@ -101,7 +101,7 @@ export default{
         updateIpInfo(){
             this.updateError = ""
 
-            axios.put(`${API_URL}/ips-info/update?id=${this.updateId}`)
+            axios.put(`https://ip-position.onrender.com/ips-info/update?id=${this.updateId}`)
             .then(res => this.getIpInfo())
             .catch(error => {
                 this.updateError = error.message + ": " + error.response.data;
@@ -110,7 +110,7 @@ export default{
         deleteIpInfo(){
             this.deleteError = ""
 
-            axios.delete(`${API_URL}/ips-info/delete?id=${this.deleteId}`)
+            axios.delete(`https://ip-position.onrender.com/ips-info/delete?id=${this.deleteId}`)
             .then(res => this.getIpInfo())
             .catch(error => {
                 this.deleteError = error.message + ": " + error.response.data;
