@@ -5,7 +5,7 @@ ENV REACT_APP_API_URL=$REACT_APP_API_URL
 
 WORKDIR /app
 
-EXPOSE 3001
+EXPOSE 5173
 
 COPY ["package.json", "package-lock.json*", "./"]
 
